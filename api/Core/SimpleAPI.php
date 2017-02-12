@@ -4,8 +4,8 @@ class SimpleAPI
 {
     // DB connect parameters
     private $host = "localhost";
-    private $login = "root";
-    private $password = "7Q,Awg!DW?";
+    private $login = "";
+    private $password = "";
     private $name = "test_task";
     private $encoding = "utf8";
 

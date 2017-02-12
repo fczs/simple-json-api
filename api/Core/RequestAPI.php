@@ -3,7 +3,7 @@
 class RequestAPI
 {
     // API gate parameters
-    private $gate = "http://35.156.37.59/api/";
+    private $gate = "";
 
     private function createContext($params = array())
     {
