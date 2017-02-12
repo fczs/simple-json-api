@@ -1,37 +1,27 @@
 <?php
+$request = new Api\Core\RequestAPI();
 
-$request = new Api\RequestAPI();
-
-$tArray = array(
+// Testing table() method
+$requestData = array(
     "table" => "News",
     "id" => "0"
 );
+$result = $request->request("table", $requestData);
+$request->showResult($result);
 
-$result = $request->testAPI("table", $tArray);
-
-echo '<pre>';
-print_r($result);
-echo '</pre>';
-
-$sArray = array(
+// Testing sessionSubscribe() method
+$requestData = array(
     "sessionId" => "123",
     "userEmail" => "mail@yandex.ru"
 );
+$result = $request->request("sessionSubscribe", $requestData);
+$request->showResult($result);
 
-$result = $request->testAPI("sessionSubscribe", $sArray);
-
-echo '<pre>';
-print_r($result);
-echo '</pre>';
-
-$nArray = array(
+// Testing postNews() method
+$requestData = array(
     "userEmail" => "corruptsouls@gmail.co",
-    "newsTitle" => "У нас новая новость",
-    "newsMessage" => "На самом деле нет"
+    "newsTitle" => "We've got news",
+    "newsMessage" => "Actually no"
 );
-
-$result = $request->testAPI("postNews", $nArray);
-
-echo '<pre>';
-print_r($result);
-echo '</pre>';
+$result = $request->request("postNews", $requestData);
+$request->showResult($result);

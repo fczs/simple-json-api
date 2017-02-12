@@ -1,9 +1,11 @@
 <?php
 
+namespace api;
+
 class RequestAPI
 {
-    const GATE = "http://35.156.37.59/api/";
-
+    private $gate = "";
+    
     private function createContext($params = array())
     {
         $options = array(
@@ -17,19 +19,12 @@ class RequestAPI
         return stream_context_create($options);
     }
     
-    public function request($method, $params)
+    public function testAPI($method, $params)
     {
-        $result = file_get_contents(GATE . $method . "/", false, $this->createContext($params));
+        $result = file_get_contents($this->gate . $method . "/", false, $this->createContext($params));
         $result = json_decode($result);
         $result = (array)$result;
 
         return $result;
-    }
-
-    public function showResult($result)
-    {
-        echo '<pre>';
-        print_r($result);
-        echo '</pre>';
     }
 }
