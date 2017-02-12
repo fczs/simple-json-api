@@ -14,16 +14,14 @@ class RequestAPI
                 "content" => json_encode($params)
             )
         );
-
         return stream_context_create($options);
     }
     
     public function request($method, $params)
     {
-        $result = file_get_contents($this->gate . $method . "/", false, $this->createContext($params));
+        $result = file_get_contents($this->gate . $method, false, $this->createContext($params));
         $result = json_decode($result);
         $result = (array)$result;
-
         return $result;
     }
 
