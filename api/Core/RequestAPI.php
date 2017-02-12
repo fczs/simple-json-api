@@ -2,7 +2,8 @@
 
 class RequestAPI
 {
-    const GATE = "http://35.156.37.59/api/";
+    // API gate parameters
+    private $gate = "http://35.156.37.59/api/";
 
     private function createContext($params = array())
     {
@@ -19,7 +20,7 @@ class RequestAPI
     
     public function request($method, $params)
     {
-        $result = file_get_contents(GATE . $method . "/", false, $this->createContext($params));
+        $result = file_get_contents($this->gate . $method . "/", false, $this->createContext($params));
         $result = json_decode($result);
         $result = (array)$result;
 

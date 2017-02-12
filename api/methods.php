@@ -1,6 +1,6 @@
 <?php
 
-include_once($_SERVER["DOCUMENT_ROOT"] . '/Api/Core/SimpleAPI.php');
+include_once($_SERVER["DOCUMENT_ROOT"] . '/api/Core/SimpleAPI.php');
 
 $api = new SimpleAPI();
 

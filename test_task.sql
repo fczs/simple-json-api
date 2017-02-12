@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 05, 2017 at 06:42 PM
+-- Generation Time: Feb 12, 2017 at 07:28 AM
 -- Server version: 5.6.35
 -- PHP Version: 5.5.38
 
@@ -60,9 +60,9 @@ CREATE TABLE `News` (
 
 INSERT INTO `News` (`ID`, `ParticipantId`, `NewsTitle`, `NewsMessage`, `LikesCounter`) VALUES
 (1, 1, 'New agenda!', 'Please visit our site!', 0),
-(2, 3, 'Еще одна новость', 'Проверка новости', 0),
-(7, 1, 'У нас новая новость', 'На самом деле нет', 0),
-(8, 2, 'У нас новая новость', 'На самом деле нет', 0);
+(2, 3, 'Another news', 'News test', 0),
+(7, 1, 'We\'ve got news for you', 'Actually no', 0),
+(8, 2, 'We\'ve got news for you', 'Actually no', 0);
 
 -- --------------------------------------------------------
 
@@ -82,9 +82,9 @@ CREATE TABLE `Participant` (
 
 INSERT INTO `Participant` (`ID`, `Email`, `Name`) VALUES
 (1, 'airmail@code-pilots.com', 'The first user'),
-(2, 'corruptsouls@gmail.com', 'Иван'),
-(4, 'ivan.kuzin@anten.ru', 'Иван'),
-(5, 'mail@yandex.ru', 'Почтовик');
+(2, 'corruptsouls@gmail.com', 'Ivan'),
+(4, 'ivan.kuzin@anten.ru', 'Ivan'),
+(5, 'mail@yandex.ru', 'Postman');
 
 -- --------------------------------------------------------
 
