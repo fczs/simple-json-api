@@ -1,11 +1,13 @@
 <?php
 
+include_once($_SERVER["DOCUMENT_ROOT"] . '/api/config.php');
+
 class SimpleAPI
 {
     // DB connect parameters
     private $host = "localhost";
-    private $login = "";
-    private $password = "";
+    private $login = DB_LOGIN;
+    private $password = DB_PASSWORD;
     private $name = "test_task";
     private $encoding = "utf8";
 
@@ -28,7 +30,6 @@ class SimpleAPI
                 "message" => $message
             ), JSON_UNESCAPED_UNICODE
         );
-
         return $response;
     }
 
@@ -56,7 +57,6 @@ class SimpleAPI
             die($this->getErrorMessage($mysqli->connect_error));
         }
         $mysqli->set_charset($this->encoding);
-
         return $mysqli;
     }
 
@@ -76,7 +76,6 @@ class SimpleAPI
         $mysqli = $this->connectDB();
         $string = $mysqli->real_escape_string($string);
         $mysqli->close();
-
         return($string);
     }
 
@@ -89,7 +88,6 @@ class SimpleAPI
         while ($row = mysqli_fetch_row($userDB)) {
             $user = $row ;
         }
-
         return $user;
     }
 

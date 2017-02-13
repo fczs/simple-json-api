@@ -1,9 +1,11 @@
 <?php
 
+include_once($_SERVER["DOCUMENT_ROOT"] . '/api/config.php');
+
 class RequestAPI
 {
     // API gate parameters
-    private $gate = "";
+    private $gate = GATE;
 
     private function createContext($params = array())
     {
