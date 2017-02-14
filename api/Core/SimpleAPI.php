@@ -1,16 +1,14 @@
 <?php
 
-include_once($_SERVER["DOCUMENT_ROOT"] . '/api/config.php');
+include_once($_SERVER["DOCUMENT_ROOT"] . '/api/config.php'); // Require constants HOST, DATABASE, USER, PASSWORD
 
 class SimpleAPI
 {
     // DB connect parameters
-    private $host = "localhost";
-    private $login = DB_LOGIN;
+    private $host = DB_HOST;
+    private $user = DB_USER;
     private $password = DB_PASSWORD;
-    private $name = "test_task";
-    private $encoding = "utf8";
-
+    private $name = DB_NAME;
 
     // On any initialization check if POST method is used for API access
     function __construct()
@@ -51,12 +49,11 @@ class SimpleAPI
     // Method for DB connection
     private function connectDB()
     {
-        $mysqli = new mysqli($this->host, $this->login, $this->password, $this->name);
+        $mysqli = new mysqli($this->host, $this->user, $this->password, $this->name);
         if ($mysqli->connect_error) {
             // Throw error message if connection isn't established
             die($this->getErrorMessage($mysqli->connect_error));
         }
-        $mysqli->set_charset($this->encoding);
         return $mysqli;
     }
 
@@ -66,7 +63,6 @@ class SimpleAPI
         $mysqli = $this->connectDB();
         $resultDB = $mysqli->query($query) or die($this->getErrorMessage($mysqli->error . " => " . $query));
         $mysqli->close();
-
         return($resultDB);
     }
 
