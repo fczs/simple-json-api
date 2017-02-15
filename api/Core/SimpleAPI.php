@@ -1,19 +1,22 @@
 <?php
 
 include_once($_SERVER["DOCUMENT_ROOT"] . '/api/config.php'); // Require constants HOST, DATABASE, USER, PASSWORD
+include_once($_SERVER["DOCUMENT_ROOT"] . '/api/Core/PDOWorker.php'); // Use PDO singleton class
 
 class SimpleAPI
 {
-    // DB connect parameters
-    private $host = DB_HOST;
-    private $user = DB_USER;
-    private $password = DB_PASSWORD;
-    private $name = DB_NAME;
-
-    // On any initialization check if POST method is used for API access
+    // On any initialization check if POST method is used and create a PDO instance
     function __construct()
     {
-        if ($_SERVER['REQUEST_METHOD'] != "POST") {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            try {
+                $pdoObj = new PDOWorker(DB_HOST, DB_NAME, DB_CHARSET, DB_USER, DB_PASSWORD);
+            } catch (PDOException $e) {
+                // Writes error message to a log file
+                file_put_contents($_SERVER["DOCUMENT_ROOT"] . '/api/log/error.log', date("d.m.Y H:i:s") . ": " . $e->getMessage() . "\n", FILE_APPEND);
+                die($this->getErrorMessage("Could not establish a connection to the database"));
+            }
+        } else {
             die($this->getErrorMessage("Use POST to get data"));
         }
     }
@@ -44,6 +47,12 @@ class SimpleAPI
         }
         $response = json_encode($response, JSON_UNESCAPED_UNICODE);
         return $response;
+    }
+
+    // Catches the PDO error and terminates script flow
+    private function catchError()
+    {
+        //if (PDOWorker::errorCode())
     }
 
     // Method for DB connection
